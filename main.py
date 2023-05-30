@@ -1,76 +1,88 @@
-from bokeh.plotting import figure, show
 import numpy as np
 
-# Создание массива значений x от 0 до 2π
-x = np.linspace(0, 2*np.pi, 100)
+while(True):
+    # Получение выбора пользователя
+    choice = int(input("Выберите программу для запуска:\n1)Matplotlib\n2)Plotly\n3)Bokeh\n0)Выход\n"))
 
-# Вычисление значений функции sin(x)
-y = np.sin(x)
+    if choice == 0:
+        print("Программа завершена.")
+        break
 
-# Создание объекта Figure
-p = figure(title="График функции sin(x)", x_axis_label='x', y_axis_label='sin(x)')
+    if choice == 1:
+        import matplotlib.pyplot as plt
 
-# Добавление графика на объект Figure
-p.line(x, y, line_width=2)
+        # Создание массива значений x от -5 до 5 с шагом 0.1
+        x = np.arange(-5, 5, 0.1)
 
-# Отображение графика
-show(p)
+        # Вычисление значений функции y = x^2
+        y = x ** 2
 
+        # Создание нового графика
+        plt.figure()
 
-import matplotlib.pyplot as plt
-import numpy as np
+        # Построение графика
+        plt.plot(x, y, label='y = x^2')
 
-# Создание массива значений x от -5 до 5 с шагом 0.1
-x = np.arange(-5, 5, 0.1)
+        # Добавление заголовка графика
+        plt.title('График функции y = x^2')
 
-# Вычисление значений функции y = x^2
-y = x ** 2
+        # Добавление подписей к осям
+        plt.xlabel('x')
+        plt.ylabel('y')
 
-# Создание нового графика
-plt.figure()
+        # Добавление сетки на график
+        plt.grid(True)
 
-# Построение графика
-plt.plot(x, y, label='y = x^2')
+        # Добавление легенды
+        plt.legend()
 
-# Добавление заголовка графика
-plt.title('График функции y = x^2')
+        # Отображение графика
+        plt.show()
 
-# Добавление подписей к осям
-plt.xlabel('x')
-plt.ylabel('y')
+    elif choice == 2:
+        import plotly.graph_objects as go
 
-# Добавление сетки на график
-plt.grid(True)
+        # Создание массива значений x от 0 до 2π с шагом 0.1
+        x = np.arange(0, 2 * np.pi, 0.1)
 
-# Добавление легенды
-plt.legend()
+        # Вычисление значений функции y = sin(x)
+        y = np.sin(x)
 
-# Отображение графика
-plt.show()
+        # Создание объекта Figure
+        fig = go.Figure()
 
-import plotly.graph_objects as go
-import numpy as np
+        # Добавление графика на объект Figure
+        fig.add_trace(go.Scatter(x=x, y=y, mode='markers', name='sin(x)'))
 
-# Создание массива значений x от 0 до 2π с шагом 0.1
-x = np.arange(0, 2*np.pi, 0.1)
+        # Настройка макета графика
+        fig.update_layout(
+            title='Scatter Plot',
+            xaxis_title='x',
+            yaxis_title='y',
+            showlegend=True,
+            hovermode='closest',
+        )
 
-# Вычисление значений функции y = sin(x)
-y = np.sin(x)
+        # Отображение графика
+        fig.show()
 
-# Создание объекта Figure
-fig = go.Figure()
+    elif choice == 3:
+        from bokeh.plotting import figure, show
 
-# Добавление графика на объект Figure
-fig.add_trace(go.Scatter(x=x, y=y, mode='markers', name='sin(x)'))
+        # Создание массива значений x от 0 до 2π
+        x = np.linspace(0, 2 * np.pi, 100)
 
-# Настройка макета графика
-fig.update_layout(
-    title='Scatter Plot',
-    xaxis_title='x',
-    yaxis_title='y',
-    showlegend=True,
-    hovermode='closest',
-)
+        # Вычисление значений функции sin(x)
+        y = np.sin(x)
 
-# Отображение графика
-fig.show()
+        # Создание объекта Figure
+        p = figure(title="График функции sin(x)", x_axis_label='x', y_axis_label='sin(x)')
+
+        # Добавление графика на объект Figure
+        p.line(x, y, line_width=2)
+
+        # Отображение графика
+        show(p)
+
+    else:
+        print("Неверный выбор. Пожалуйста, выберите число от 1 до 3.")
